@@ -1,0 +1,20 @@
+{
+  "name": "dep-b",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "dep-b/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/dep-b",
+        "tsConfig": "dep-b/tsconfig.lib.json",
+        "packageJson": "dep-b/package.json",
+        "main": "dep-b/src/index.ts",
+        "assets": ["dep-b/*.md"]
+      }
+    }
+  }
+}
