@@ -12,7 +12,7 @@
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/nx-test",
-        "format": ["cjs"],
+        "format": ["esm"],
         "bundle": false,
         "main": "apps/nx-test/src/main.ts",
         "tsConfig": "apps/nx-test/tsconfig.app.json",
