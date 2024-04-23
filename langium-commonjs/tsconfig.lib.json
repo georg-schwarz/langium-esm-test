@@ -5,5 +5,7 @@
     "declaration": true,
     "types": ["node"],
   },
-  "include": ["index.ts"],
+  "include": [
+    "src/index.ts"
+  ],
 }
