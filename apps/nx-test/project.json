@@ -6,35 +6,13 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
       "options": {
-        "platform": "node",
-        "outputPath": "dist/apps/nx-test",
-        "format": ["cjs"],
-        "bundle": false,
-        "main": "apps/nx-test/src/main.ts",
+        "outputPath": "dist/nx-test",
         "tsConfig": "apps/nx-test/tsconfig.app.json",
-        "assets": ["apps/nx-test/src/assets"],
-        "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
-      },
-      "configurations": {
-        "development": {},
-        "production": {
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
-        }
+        "main": "apps/nx-test/src/main.ts",
+        "assets": ["apps/nx-test/*.md"]
       }
     },
     "serve": {

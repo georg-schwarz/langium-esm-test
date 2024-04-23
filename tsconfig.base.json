@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -16,8 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@org/dep-a": ["dep-a/src/index.ts"],
-      "@org/dep-b": ["dep-b/src/index.ts"],
-      "@org/langium-commonjs": ["langium-commonjs/index.ts"]
+      "@org/dep-b": ["dep-b/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
