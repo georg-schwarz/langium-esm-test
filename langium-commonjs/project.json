@@ -1,0 +1,22 @@
+{
+  "name": "langium-commonjs",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "langium-commonjs/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/langium-commonjs",
+        "main": "langium-commonjs/index.ts",
+        "tsConfig": "langium-commonjs/tsconfig.lib.json",
+        "assets": ["langium-commonjs/*.md", "langium-commonjs/index.d.ts"],
+        "generatePackageJson": true,
+        "format": ["cjs"],
+        "thirdParty": true 
+      }
+    }
+  }
+}

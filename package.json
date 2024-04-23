@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "axios": "^1.6.0",
+    "langium": "^3.0.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
