@@ -1,1 +1,1 @@
-export * from './lib/dep-a';
+export * from './lib/dep-a.js';

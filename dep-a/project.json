@@ -13,7 +13,7 @@
         "tsConfig": "dep-a/tsconfig.lib.json",
         "packageJson": "dep-a/package.json",
         "main": "dep-a/src/index.ts",
-        "assets": ["dep-a/*.md"]
+        "assets": ["dep-a/*.md"],
       }
     }
   }
