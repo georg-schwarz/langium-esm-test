@@ -41,7 +41,8 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "nx-test:build"
+        "buildTarget": "nx-test:build",
+        "runtimeArgs": ["--loader=./loader.js"]
       },
       "configurations": {
         "development": {
