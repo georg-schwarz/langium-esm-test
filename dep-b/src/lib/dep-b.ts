@@ -1,5 +1,5 @@
 import { depA } from "@org/dep-a";
-import { Langium } from '@org/langium-commonjs';
+import { isReference } from 'langium';
 export function depB(): string {
-  return 'dep-b' + depA() + JSON.stringify(Langium.isReference({}));
+  return 'dep-bpppp' + depA() + JSON.stringify(isReference({}));
 }
