@@ -12,18 +12,11 @@
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
+      "executor": "nx:run-commands",
       "options": {
-        "buildTarget": "nx-test:build2"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "nx-test:build2:development"
-        },
-        "production": {
-          "buildTarget": "nx-test:build2:production"
-        }
+        "commands": [
+          "nx build nx-test && node dist/apps/nx-test/src/main.js || nx watch --projects=nx-test --includeDependentProjects -- \"nx build nx-test && node dist/apps/nx-test/src/main.js\""
+        ]
       }
     }
   }
