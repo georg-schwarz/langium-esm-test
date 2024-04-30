@@ -5,16 +5,7 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/dep-b",
-        "tsConfig": "dep-b/tsconfig.lib.json",
-        "packageJson": "dep-b/package.json",
-        "main": "dep-b/src/index.ts",
-        "assets": ["dep-b/*.md"]
-      }
-    }
+    "build": {},
+    "swc": {}
   }
 }

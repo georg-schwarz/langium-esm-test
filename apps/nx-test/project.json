@@ -5,29 +5,18 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+    "build": {},
+    "swc": {
       "options": {
-        "outputPath": "dist/nx-test",
-        "tsConfig": "apps/nx-test/tsconfig.app.json",
-        "main": "apps/nx-test/src/main.ts",
-        "assets": ["apps/nx-test/*.md"]
+        "tsConfig": "{projectRoot}/tsconfig.app.json"
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
+      "executor": "nx:run-commands",
       "options": {
-        "buildTarget": "nx-test:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "nx-test:build:development"
-        },
-        "production": {
-          "buildTarget": "nx-test:build:production"
-        }
+        "commands": [
+          "nx build nx-test && node dist/apps/nx-test/src/main.js || nx watch --projects=nx-test --includeDependentProjects -- \"nx build nx-test && node dist/apps/nx-test/src/main.js\""
+        ]
       }
     }
   }

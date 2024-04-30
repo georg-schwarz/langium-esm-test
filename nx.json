@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -16,19 +19,55 @@
   },
   "targetDefaults": {
     "@nx/esbuild:esbuild": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "cache": false,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
-    "@nx/js:tsc": {
+    "swc": {
+      "executor": "@nx/js:swc",
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}-swc"
+      ],
+      "options": {
+        "outputPath": "dist/{projectRoot}-swc",
+        "main": "{projectRoot}/src/index.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json"
+      }
     },
-    "@nx/js:swc": {
+    "build": {
+      "executor": "nx:run-commands",
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": [
+        "{workspaceRoot}/dist/{projectRoot}-raw"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "commands": [
+          "rm dist/{projectRoot} -rf",
+          "cp dist/{projectRoot}-swc dist/{projectRoot} -r",
+          "tsc-esm-fix --target dist/{projectRoot}"
+        ],
+        "parallel": false
+      },
+      "dependsOn": [
+        "^build",
+        "swc"
+      ]
     }
   },
   "plugins": [
@@ -36,22 +75,6 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "buildTargetName": "build",
-        "testTargetName": "test",
-        "serveTargetName": "serve",
-        "previewTargetName": "preview",
-        "serveStaticTargetName": "serve-static"
       }
     }
   ]
