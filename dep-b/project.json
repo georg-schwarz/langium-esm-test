@@ -5,14 +5,7 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build2": {
-      "dependsOn": ["swc"],
-      "command": "tsc-esm-fix --target dist/{projectRoot}",
-      "outputs": [],
-      "inputs": []
-    },
-    "swc": {
-      "executor": "@nx/js:swc"
-    }
+    "build": {},
+    "swc": {}
   }
 }

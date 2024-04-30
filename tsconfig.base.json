@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@org/custom-swc": ["plugins/custom-swc/src/index.ts"],
       "@org/dep-a": ["dep-a/src/index.ts"],
       "@org/dep-b": ["dep-b/src/index.ts"]
     }

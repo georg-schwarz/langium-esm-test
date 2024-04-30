@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -17,18 +20,54 @@
   "targetDefaults": {
     "@nx/esbuild:esbuild": {
       "cache": false,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
-    "@nx/js:swc": {
-      "cache": false,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+    "swc": {
+      "executor": "@nx/js:swc",
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}-swc"
+      ],
       "options": {
-        "outputPath": "dist/{projectRoot}",
+        "outputPath": "dist/{projectRoot}-swc",
         "main": "{projectRoot}/src/index.ts",
         "tsConfig": "{projectRoot}/tsconfig.lib.json"
       }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{workspaceRoot}/dist/{projectRoot}-raw"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "commands": [
+          "rm dist/{projectRoot} -rf",
+          "cp dist/{projectRoot}-swc dist/{projectRoot} -r",
+          "tsc-esm-fix --target dist/{projectRoot}"
+        ],
+        "parallel": false
+      },
+      "dependsOn": [
+        "^build",
+        "swc"
+      ]
     }
   },
   "plugins": [

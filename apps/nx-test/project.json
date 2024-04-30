@@ -5,14 +5,8 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build2": {
-      "dependsOn": ["swc"],
-      "command": "tsc-esm-fix --target dist/{projectRoot}",
-      "outputs": [],
-      "inputs": []
-    },
+    "build": {},
     "swc": {
-      "executor": "@nx/js:swc",
       "options": {
         "tsConfig": "{projectRoot}/tsconfig.app.json"
       }
