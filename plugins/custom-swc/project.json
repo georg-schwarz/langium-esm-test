@@ -1,0 +1,41 @@
+{
+  "name": "custom-swc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "plugins/custom-swc/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/plugins/custom-swc",
+        "main": "plugins/custom-swc/src/index.ts",
+        "tsConfig": "plugins/custom-swc/tsconfig.lib.json",
+        "assets": [
+          "plugins/custom-swc/*.md",
+          {
+            "input": "./plugins/custom-swc/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./plugins/custom-swc/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./plugins/custom-swc",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./plugins/custom-swc",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}
