@@ -1,15 +1,14 @@
 {
-  "name": "dep-b",
+  "name": "test",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "dep-b/src",
+  "sourceRoot": "test/src",
   "projectType": "library",
   "tags": [],
+  "// targets": "to see all targets run: nx show project test --web",
   "targets": {
-    "build2": {
+    "build": {
       "dependsOn": ["swc"],
-      "command": "tsc-esm-fix --target dist/{projectRoot}",
-      "outputs": [],
-      "inputs": []
+      "command": "npx tsc-esm-fix --target dist/test"
     },
     "swc": {
       "executor": "@nx/js:swc"

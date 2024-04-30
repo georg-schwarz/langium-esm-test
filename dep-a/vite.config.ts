@@ -30,6 +30,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    target: "modules",
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
@@ -42,6 +43,9 @@ export default defineConfig({
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: [],
+      output: {
+        format: "es",
+      }
     },
   },
 });

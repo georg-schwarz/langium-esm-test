@@ -5,28 +5,30 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+    "build2": {
+      "dependsOn": ["swc"],
+      "command": "tsc-esm-fix --target dist/{projectRoot}",
+      "outputs": [],
+      "inputs": []
+    },
+    "swc": {
+      "executor": "@nx/js:swc",
       "options": {
-        "outputPath": "dist/nx-test",
-        "tsConfig": "apps/nx-test/tsconfig.app.json",
-        "main": "apps/nx-test/src/main.ts",
-        "assets": ["apps/nx-test/*.md"]
+        "tsConfig": "{projectRoot}/tsconfig.app.json"
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "nx-test:build"
+        "buildTarget": "nx-test:build2"
       },
       "configurations": {
         "development": {
-          "buildTarget": "nx-test:build:development"
+          "buildTarget": "nx-test:build2:development"
         },
         "production": {
-          "buildTarget": "nx-test:build:production"
+          "buildTarget": "nx-test:build2:production"
         }
       }
     }

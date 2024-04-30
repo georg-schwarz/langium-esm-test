@@ -3,7 +3,7 @@
     "parser": {
       "syntax": "typescript",
     },
-    "baseUrl": "..",
+    "baseUrl": "../..",
     "paths": {
         "@org/dep-a": ["dep-a/src/index.js"],
         "@org/dep-b": ["dep-b/src/index.js"],
