@@ -5,18 +5,23 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build": {},
-    "swc": {
+    "build": {
       "options": {
         "tsConfig": "{projectRoot}/tsconfig.app.json"
       }
     },
+//    "serve": {
+//      "executor": "nx:run-commands",
+//      "options": {
+//        "commands": [
+//          "nx build nx-test && node dist/apps/nx-test/src/main.js || nx watch --projects=nx-test --includeDependentProjects -- \"nx build nx-test && node dist/apps/nx-test/src/main.js\""
+//        ]
+//      }
+//    }
     "serve": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/js:node",
       "options": {
-        "commands": [
-          "nx build nx-test && node dist/apps/nx-test/src/main.js || nx watch --projects=nx-test --includeDependentProjects -- \"nx build nx-test && node dist/apps/nx-test/src/main.js\""
-        ]
+        "buildTarget": "nx-test:build"
       }
     }
   }

@@ -28,46 +28,29 @@
         "^production"
       ]
     },
-    "swc": {
-      "executor": "@nx/js:swc",
-      "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}-swc"
-      ],
-      "options": {
-        "outputPath": "dist/{projectRoot}-swc",
-        "main": "{projectRoot}/src/index.ts",
-        "tsConfig": "{projectRoot}/tsconfig.lib.json"
-      }
-    },
     "build": {
-      "executor": "nx:run-commands",
-      "cache": true,
-      "inputs": [
-        "{workspaceRoot}/dist/{projectRoot}-raw"
-      ],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "commands": [
-          "rm dist/{projectRoot} -rf",
-          "cp dist/{projectRoot}-swc dist/{projectRoot} -r",
-          "tsc-esm-fix --target dist/{projectRoot}"
+        "main": "{projectRoot}/src/index.ts",
+        "outputPath": "dist/{projectRoot}",
+        "outputFileName": "main.js",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "{projectRoot}/README.md",
+            "input": ".",
+            "output": "."
+          }
         ],
-        "parallel": false
+        "platform": "node",
+        "generatePackageJson": true
       },
-      "dependsOn": [
-        "^build",
-        "swc"
-      ]
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
     }
   },
   "plugins": [
